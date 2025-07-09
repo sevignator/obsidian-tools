@@ -1,24 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { type ContentType } from '../utils/types.ts';
 
-export async function createFile(
-  location: string,
-  contentType: ContentType,
-  title: string
-) {
-  const obsidianVaultPath = process.env.OBSIDIAN_VAULT_PATH;
+import { getContentTypePath, type ContentType } from '../utils/content-type.ts';
 
-  if (!obsidianVaultPath) {
-    throw new Error(
-      'You must define a `OBSIDIAN_VAULT_PATH` environment variable.'
-    );
-  }
+export async function createFile(contentType: ContentType, filename: string) {
+  const contentTypePath = getContentTypePath(contentType);
+  const filePath = path.join(contentTypePath, filename);
 
-  console.log('Creating a new file!');
+  await fs.writeFile(filePath, '');
 
-  const vaultPath = path.join(obsidianVaultPath);
-  const vaultDir = await fs.readdir(vaultPath);
-
-  console.log(vaultDir);
+  console.log(`A new file has been created at "${filePath}".`);
 }

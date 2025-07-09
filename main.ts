@@ -4,6 +4,8 @@ const cliArgs = process.argv;
 const commandName = cliArgs[2];
 const commandArgs = cliArgs.slice(3);
 
+runCommand(commandName, ...commandArgs);
+
 function runCommand(commandName: string, ...args: string[]) {
   const availableCommandNames = Object.keys(commandsRegistry);
 
@@ -12,7 +14,5 @@ function runCommand(commandName: string, ...args: string[]) {
     return;
   }
 
-  commandsRegistry[commandName].callback();
+  commandsRegistry[commandName].callback(...args);
 }
-
-runCommand(commandName, ...commandArgs);
