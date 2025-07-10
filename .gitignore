@@ -2,3 +2,6 @@
 node_modules/
 
 .env
+
+schema.ts
+types.ts
