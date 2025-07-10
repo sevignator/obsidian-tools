@@ -1,6 +1,6 @@
 # Obsidian tools
 
-This is a set of commands that allow me to more easily and conveniently create new Markdown files for my Obsidian vault.
+This is a set of commands that allow me to more easily and conveniently manage my Obsidian vault.
 
 ## Getting started
 
