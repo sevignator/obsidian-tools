@@ -1,6 +1,6 @@
-import { checkVault } from './checkVault.ts';
-import { createFile } from './createFile.ts';
-import { createDirFile } from './createDirFile.ts';
+import { checkVault } from '@/commands/checkVault';
+import { createFile } from '@/commands/createFile';
+import { createDirFile } from '@/commands/createDirFile';
 
 interface Command {
   name: string;

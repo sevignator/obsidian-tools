@@ -1,5 +1,5 @@
-import { CONFIG } from '../config.ts';
-import { checkDestination } from '../utils/checkDestination.ts';
+import { CONFIG } from '@/config';
+import { checkDestination } from '@/utils/checkDestination';
 
 export async function checkVault() {
   const vaultExists = await checkDestination(CONFIG.vaultPath);

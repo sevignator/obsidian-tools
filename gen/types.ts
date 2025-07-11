@@ -2,10 +2,10 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
 
-import { CONFIG } from '../config.ts';
-import { checkDestination } from '../utils/checkDestination.ts';
-import { getTemplateFileNames } from '../utils/getTemplateFileNames.ts';
-import { getFileContents } from '../utils/getFileContents.ts';
+import { CONFIG } from '@/config';
+import { checkDestination } from '@/utils/checkDestination';
+import { getTemplateFileNames } from '@/utils/getTemplateFileNames';
+import { getFileContents } from '@/utils/getFileContents';
 
 const typesFilePath = './types.ts';
 const templatesPath = path.join(CONFIG.templatesPath);

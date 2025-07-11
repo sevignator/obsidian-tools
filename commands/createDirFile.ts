@@ -2,11 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import readline from 'node:readline/promises';
 
-import { type ContentType } from '../types.ts';
-import { CONFIG } from '../config.ts';
-import { CONTENT_PATHS } from '../paths.ts';
-import { checkDestination } from '../utils/checkDestination.ts';
-import { getTemplate } from '../utils/getTemplate.ts';
+import { type ContentType } from '@/types';
+import { CONFIG } from '@/config';
+import { CONTENT_PATHS } from '@/paths';
+import { checkDestination } from '@/utils/checkDestination';
+import { getTemplate } from '@/utils/getTemplate';
 
 export async function createDirFile(
   contentType: ContentType,

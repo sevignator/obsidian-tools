@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { CONFIG } from '../config.ts';
+import { CONFIG } from '@/config';
 
 export async function getFileContents(
   fileName: string,

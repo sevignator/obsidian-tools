@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { CONFIG } from '../config.ts';
+import { CONFIG } from '@/config';
 
 /**
  * @description Gets the list of files within the templates directory.

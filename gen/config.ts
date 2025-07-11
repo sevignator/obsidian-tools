@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import readline from 'node:readline/promises';
 
-import { checkDestination } from '../utils/checkDestination.ts';
+import { checkDestination } from '@/utils/checkDestination';
 
 const configFilePath = './config.ts';
 const configTemplate = `export const CONFIG = {
