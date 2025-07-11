@@ -6,6 +6,7 @@ import { checkDestination } from '../utils/checkDestination.ts';
 const configFilePath = './config.ts';
 const configTemplate = `export const CONFIG = {
   vaultPath: null,
+  templatesPath: 'Templates',
 } as const;`;
 
 await generateConfig();

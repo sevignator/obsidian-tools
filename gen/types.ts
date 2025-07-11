@@ -3,13 +3,13 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 import { CONFIG } from '../config.ts';
-import { TEMPLATES_PATH } from '../paths.ts';
-import { getTemplatesDir } from '../utils/getTemplatesDir.ts';
+import { checkDestination } from '../utils/checkDestination.ts';
+import { getTemplateFileNames } from '../utils/getTemplateFileNames.ts';
 import { getFileContents } from '../utils/getFileContents.ts';
 
-const typesFilePath = path.join('./types.ts');
-const templatesPath = path.join(CONFIG.vaultPath, TEMPLATES_PATH);
-const templatesDir = await getTemplatesDir();
+const typesFilePath = './types.ts';
+const templatesPath = path.join(CONFIG.templatesPath);
+const templatesDir = await getTemplateFileNames();
 
 await generateTypes();
 
@@ -17,7 +17,9 @@ await generateTypes();
  * @description Create types based on the vault's templates
  */
 export async function generateTypes() {
+  const typesFileExists = await checkDestination(typesFilePath);
   const contentTypes: string[] = [];
+  const templateFileNames: string[] = [];
 
   for (const templateFileName of templatesDir) {
     const template = await getFileContents(templateFileName, templatesPath);
@@ -29,16 +31,31 @@ export async function generateTypes() {
     }
 
     contentTypes.push(`'${contentType}'`);
+    templateFileNames.push(`'${templateFileName}'`);
   }
 
-  await fs.rm(typesFilePath);
+  // Delete existing file since it's set to read-only, and cannot be overwritten.
+  if (typesFileExists) {
+    await fs.rm(typesFilePath);
+  }
 
   await fs.writeFile(
     typesFilePath,
-    `export type ContentType = ${contentTypes.join(' | ')};\n`
+    [
+      `export type ContentType = ${contentTypes.join('\n  | ')};`,
+      ``,
+      `export const templateFileNames: Record<ContentType, string> = {`,
+      `  ${contentTypes
+        .map(
+          (contentType, index) => `${contentType}: ${templateFileNames[index]}`
+        )
+        .join(',\n  ')}`,
+      `};`,
+    ].join('\n')
   );
 
+  // Make the types file readonly.
   await fs.chmod(typesFilePath, 0o444);
 
-  console.log(`Types were generated at "${typesFilePath}".`);
+  console.log('Types were generated!');
 }

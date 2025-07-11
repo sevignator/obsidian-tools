@@ -6,8 +6,6 @@ import { checkDestination } from '../utils/checkDestination.ts';
 const pathsFilePath = './paths.ts';
 const pathsTemplate = `import { type ContentType } from './types.ts';
 
-export const TEMPLATES_PATH = '';
-
 export const CONTENT_PATHS: Record<ContentType, string> = {};`;
 
 await generatePaths();
