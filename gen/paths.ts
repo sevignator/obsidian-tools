@@ -8,13 +8,13 @@ export const TEMPLATES_PATH = '';
 
 export const CONTENT_PATHS: Record<ContentType, string> = {};`;
 
-generatePaths();
+await generatePaths();
 
 /**
  * @description Generate a new `paths.ts` file in the project's root.
  *
  * This file can be committed into Git, since its values are vault-specific.
  */
-function generatePaths() {
-  fs.writeFile(pathsFilePath, pathsTemplate);
+async function generatePaths() {
+  await fs.writeFile(pathsFilePath, pathsTemplate);
 }

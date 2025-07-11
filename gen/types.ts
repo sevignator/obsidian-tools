@@ -3,13 +3,14 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 import { CONFIG } from '../config.ts';
+import { getTemplatesDir } from '../utils/getTemplatesDir.ts';
 import { getFileContents } from '../utils/getFileContents.ts';
 
 const typesFilePath = path.join('./types.ts');
 const templatesPath = path.join(CONFIG.vaultPath, CONFIG.templatesDir);
 const templatesDir = await getTemplatesDir();
 
-generateTypes();
+await generateTypes();
 
 /**
  * @description Create types based on the vault's templates
