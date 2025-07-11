@@ -2,20 +2,22 @@
   "name": "obsidian-tools",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "type": "module",
   "scripts": {
-    "cmd": "node --experimental-strip-types main.ts",
-    "gen:config": "node --experimental-strip-types ./gen/config.ts",
-    "gen:types": "node --experimental-strip-types ./gen/types.ts",
-    "gen:paths": "node --experimental-strip-types ./gen/paths.ts"
+    "cmd": "vite-node main.ts",
+    "gen:config": "vite-node ./gen/config.ts",
+    "gen:types": "vite-node ./gen/types.ts",
+    "gen:paths": "vite-node ./gen/paths.ts"
   },
   "keywords": [ ],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7",
   "devDependencies": {
-    "@types/node": "^24.0.11"
+    "@types/node": "^24.0.11",
+    "typescript": "^5.8.3",
+    "vite-node": "^3.2.4"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
