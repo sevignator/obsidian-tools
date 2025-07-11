@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
-import readline from 'node:readline';
+import readline from 'node:readline/promises';
+
+import { checkDestination } from '../utils/checkDestination.ts';
 
 const pathsFilePath = './paths.ts';
 const pathsTemplate = `import { type ContentType } from './types.ts';
@@ -16,31 +18,26 @@ await generatePaths();
  * The resulting file can be committed into Git, since its values are vault-specific.
  */
 async function generatePaths() {
-  try {
-    await fs.access(pathsFilePath);
+  const pathsFileExists = await checkDestination(pathsFilePath);
 
+  if (pathsFileExists) {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
     });
 
-    rl.question(
-      `A paths file already exists at "${pathsFilePath}". Would you like to override it? [y/n] `,
-      async (answer) => {
-        if (answer === 'y') {
-          console.log(`Overwriting the paths file at "${pathsFilePath}".`);
-          await fs.writeFile(pathsFilePath, pathsTemplate);
-          rl.close();
-          process.exit();
-        } else {
-          rl.close();
-          process.exit();
-        }
-      }
+    const answer = await rl.question(
+      `A paths file already exists at "${pathsFilePath}". Would you like to override it? [y/n] `
     );
-  } catch {
-    console.log(`Generating a new paths file at "${pathsFilePath}".`);
+
+    if (answer === 'y') {
+      await fs.writeFile(pathsFilePath, pathsTemplate);
+      console.log(`The paths file at "${pathsFilePath}" was overwritten.`);
+    }
+
+    rl.close();
+  } else {
     await fs.writeFile(pathsFilePath, pathsTemplate);
-    process.exit();
+    console.log(`A new paths file was generated at "${pathsFilePath}".`);
   }
 }

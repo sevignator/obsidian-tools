@@ -17,8 +17,6 @@ await generateTypes();
  * @description Create types based on the vault's templates
  */
 export async function generateTypes() {
-  console.log('Generating types...');
-
   const contentTypes: string[] = [];
 
   for (const templateFileName of templatesDir) {
@@ -41,4 +39,6 @@ export async function generateTypes() {
   );
 
   await fs.chmod(typesFilePath, 0o444);
+
+  console.log(`Types were generated at "${typesFilePath}".`);
 }

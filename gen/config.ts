@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
-import readline from 'node:readline';
+import readline from 'node:readline/promises';
+
+import { checkDestination } from '../utils/checkDestination.ts';
 
 const configFilePath = './config.ts';
 const configTemplate = `export const CONFIG = {
@@ -12,31 +14,26 @@ await generateConfig();
  * @description Generate a new `config.ts` file in the project's root.
  */
 async function generateConfig() {
-  try {
-    await fs.access(configFilePath);
+  const configFileExists = await checkDestination(configFilePath);
 
+  if (configFileExists) {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
     });
 
-    rl.question(
-      `A config file already exists at "${configFilePath}". Would you like to override it? [y/n] `,
-      async (answer) => {
-        if (answer === 'y') {
-          console.log(`Overwriting the config file at "${configFilePath}".`);
-          await fs.writeFile(configFilePath, configTemplate);
-          rl.close();
-          process.exit();
-        } else {
-          rl.close();
-          process.exit();
-        }
-      }
+    const answer = await rl.question(
+      `A config file already exists at "${configFilePath}". Would you like to override it? [y/n] `
     );
-  } catch {
-    console.log(`Generating a new config file at "${configFilePath}".`);
+
+    if (answer === 'y') {
+      await fs.writeFile(configFilePath, configTemplate);
+      console.log(`The config file at "${configFilePath}" was overwritten.`);
+    }
+
+    rl.close();
+  } else {
     await fs.writeFile(configFilePath, configTemplate);
-    process.exit();
+    console.log(`A new config file was generated at "${configFilePath}".`);
   }
 }
