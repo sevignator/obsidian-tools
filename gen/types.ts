@@ -3,11 +3,12 @@ import path from 'node:path';
 import matter from 'gray-matter';
 
 import { CONFIG } from '../config.ts';
+import { TEMPLATES_PATH } from '../paths.ts';
 import { getTemplatesDir } from '../utils/getTemplatesDir.ts';
 import { getFileContents } from '../utils/getFileContents.ts';
 
 const typesFilePath = path.join('./types.ts');
-const templatesPath = path.join(CONFIG.vaultPath, CONFIG.templatesDir);
+const templatesPath = path.join(CONFIG.vaultPath, TEMPLATES_PATH);
 const templatesDir = await getTemplatesDir();
 
 await generateTypes();
