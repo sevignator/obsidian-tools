@@ -2,13 +2,14 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
 
-import { getTemplatesDir } from '../utils/getTemplatesDir.ts';
-import { getTemplatesPath } from '../utils/getTemplatesPath.ts';
+import { CONFIG } from '../config.ts';
 import { getFileContents } from '../utils/getFileContents.ts';
 
-const templatesPath = getTemplatesPath();
-const templatesDir = await getTemplatesDir();
 const typesFilePath = path.join('./types.ts');
+const templatesPath = path.join(CONFIG.vaultPath, CONFIG.templatesDir);
+const templatesDir = await getTemplatesDir();
+
+generateTypes();
 
 /**
  * @description Create types based on the vault's templates
@@ -30,8 +31,12 @@ export async function generateTypes() {
     contentTypes.push(`'${contentType}'`);
   }
 
-  fs.writeFile(
+  await fs.rm(typesFilePath);
+
+  await fs.writeFile(
     typesFilePath,
     `export type ContentType = ${contentTypes.join(' | ')};\n`
   );
+
+  await fs.chmod(typesFilePath, 0o444);
 }

@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --env-file=.env --experimental-strip-types main.ts",
-    "gen": "node --env-file=.env --experimental-strip-types ./gen/generate.ts"
+    "start": "node --experimental-strip-types main.ts",
+    "gen:config": "node --experimental-strip-types ./gen/config.ts",
+    "gen:types": "node --experimental-strip-types ./gen/types.ts",
+    "gen:paths": "node --experimental-strip-types ./gen/paths.ts"
   },
   "keywords": [ ],
   "author": "",

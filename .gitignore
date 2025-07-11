@@ -3,5 +3,8 @@ node_modules/
 
 .env
 
-schema.ts
+config.ts
 types.ts
+
+!gen/config.ts
+!gen/types.ts

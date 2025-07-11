@@ -1,15 +1,13 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { getVaultPath } from './getVaultPath.ts';
-
-const vaultPath = getVaultPath();
+import { CONFIG } from '../config.ts';
 
 export async function getFileContents(
   fileName: string,
-  location: string = vaultPath
+  pathToFile: string = CONFIG.vaultPath
 ) {
-  const filePath = path.join(location, fileName);
+  const filePath = path.join(pathToFile, fileName);
 
   return await fs.readFile(filePath, {
     encoding: 'utf-8',

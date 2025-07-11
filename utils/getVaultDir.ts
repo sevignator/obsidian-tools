@@ -1,8 +1,7 @@
 import fs from 'node:fs/promises';
 
-import { getVaultPath } from './getVaultPath.ts';
+import { CONFIG } from '../config.ts';
 
 export async function getVaultDir() {
-  const vaultPath = getVaultPath();
-  return await fs.readdir(vaultPath);
+  return await fs.readdir(CONFIG.vaultPath);
 }
