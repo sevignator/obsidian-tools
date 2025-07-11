@@ -30,8 +30,8 @@ export async function generateTypes() {
       continue;
     }
 
-    contentTypes.push(`'${contentType}'`);
-    templateFileNames.push(`'${templateFileName}'`);
+    contentTypes.push(contentType);
+    templateFileNames.push(templateFileName);
   }
 
   // Delete existing file since it's set to read-only, and cannot be overwritten.
@@ -42,12 +42,15 @@ export async function generateTypes() {
   await fs.writeFile(
     typesFilePath,
     [
-      `export type ContentType = ${contentTypes.join('\n  | ')};`,
+      `export type ContentType = ${contentTypes
+        .map((contentType) => `'${contentType}'`)
+        .join(' | ')};`,
       ``,
       `export const templateFileNames: Record<ContentType, string> = {`,
       `  ${contentTypes
         .map(
-          (contentType, index) => `${contentType}: ${templateFileNames[index]}`
+          (contentType, index) =>
+            `${contentType}: '${templateFileNames[index]}'`
         )
         .join(',\n  ')}`,
       `};`,
