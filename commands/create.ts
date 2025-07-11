@@ -8,7 +8,7 @@ import { CONTENT_PATHS } from '../paths.ts';
 import { checkDestination } from '../utils/checkDestination.ts';
 import { getTemplate } from '../utils/getTemplate.ts';
 
-export async function createFile(contentType: ContentType, fileName: string) {
+export async function create(contentType: ContentType, fileName: string) {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

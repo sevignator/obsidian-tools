@@ -1,5 +1,5 @@
 import { checkVault } from './checkVault.ts';
-import { createFile } from './createFile.ts';
+import { create } from './create.ts';
 
 interface Command {
   name: string;
@@ -13,9 +13,9 @@ export const commandsRegistry: Record<string, Command> = {
     description: 'Checks whether the Obsidian vault can be accessed.',
     callback: checkVault,
   },
-  'create-file': {
-    name: 'create-file',
+  create: {
+    name: 'create',
     description: 'Creates a single file.',
-    callback: createFile,
+    callback: create,
   },
 };
