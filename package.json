@@ -10,14 +10,16 @@
     "gen:types": "vite-node ./gen/types.ts",
     "gen:paths": "vite-node ./gen/paths.ts"
   },
-  "keywords": [ ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7",
   "devDependencies": {
     "@types/node": "^24.0.11",
     "typescript": "^5.8.3",
-    "vite-node": "^3.2.4"
+    "vite": "^7.0.4",
+    "vite-node": "^3.2.4",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
     "gray-matter": "^4.0.3"
