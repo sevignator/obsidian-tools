@@ -5,7 +5,7 @@ import readline from 'node:readline/promises';
 import { type ContentType } from '../types.ts';
 import { CONFIG } from '../config.ts';
 import { CONTENT_PATHS } from '../paths.ts';
-import { fileExists } from '../utils/fileExists.ts';
+import { checkDestination } from '../utils/checkDestination.ts';
 
 export async function createFile(contentType: ContentType, fileName: string) {
   const rl = readline.createInterface({
@@ -19,7 +19,7 @@ export async function createFile(contentType: ContentType, fileName: string) {
     `${fileName}.md`
   );
 
-  if (await fileExists(filePath)) {
+  if (await checkDestination(filePath)) {
     const answer = await rl.question(
       `A file at "${filePath}" already exists. Would you like to overwrite it? [y/n] `
     );
