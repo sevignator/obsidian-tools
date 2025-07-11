@@ -1,4 +1,4 @@
-import { ContentType } from './types.ts';
+import { type ContentType } from './types.ts';
 
 export const TEMPLATES_PATH = 'Templates';
 

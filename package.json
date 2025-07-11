@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-strip-types main.ts",
+    "cmd": "node --experimental-strip-types main.ts",
     "gen:config": "node --experimental-strip-types ./gen/config.ts",
     "gen:types": "node --experimental-strip-types ./gen/types.ts",
     "gen:paths": "node --experimental-strip-types ./gen/paths.ts"

@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import readline from 'node:readline';
 
 const pathsFilePath = './paths.ts';
-const pathsTemplate = `import { ContentType } from './types.ts';
+const pathsTemplate = `import { type ContentType } from './types.ts';
 
 export const TEMPLATES_PATH = '';
 
