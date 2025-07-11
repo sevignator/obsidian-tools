@@ -14,7 +14,8 @@ const templatesDir = await getTemplateFileNames();
 await generateTypes();
 
 /**
- * @description Create types based on the vault's templates
+ * @description Creates types based on the `content_type` property found in the
+ * vault's templates.
  */
 export async function generateTypes() {
   const typesFileExists = await checkDestination(typesFilePath);

@@ -1,5 +1,6 @@
 import { checkVault } from './checkVault.ts';
-import { create } from './create.ts';
+import { createFile } from './createFile.ts';
+import { createDirFile } from './createDirFile.ts';
 
 interface Command {
   name: string;
@@ -8,14 +9,19 @@ interface Command {
 }
 
 export const commandsRegistry: Record<string, Command> = {
-  'check-vault': {
-    name: 'check-vault',
+  'check:vault': {
+    name: 'check:vault',
     description: 'Checks whether the Obsidian vault can be accessed.',
     callback: checkVault,
   },
-  create: {
-    name: 'create',
+  'create:file': {
+    name: 'create:file',
     description: 'Creates a single file.',
-    callback: create,
+    callback: createFile,
+  },
+  'create:dirfile': {
+    name: 'create:dirfile',
+    description: 'Creates a directory file with its parent directory.',
+    callback: createDirFile,
   },
 };

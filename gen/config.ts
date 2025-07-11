@@ -12,7 +12,7 @@ const configTemplate = `export const CONFIG = {
 await generateConfig();
 
 /**
- * @description Generate a new `config.ts` file in the project's root.
+ * @description Generates a new `config.ts` file in the project's root.
  */
 async function generateConfig() {
   const configFileExists = await checkDestination(configFilePath);
