@@ -4,7 +4,7 @@ import readline from 'node:readline/promises';
 import { checkDestination } from '@/utils/checkDestination';
 
 const pathsFilePath = './paths.ts';
-const pathsTemplate = `import { type ContentType } from './types.ts';
+const pathsTemplate = `import { type ContentType } from '@/types';
 
 export const CONTENT_PATHS: Record<ContentType, string> = {};`;
 

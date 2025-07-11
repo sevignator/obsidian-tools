@@ -1,4 +1,4 @@
-import { type ContentType } from './types.ts';
+import { type ContentType } from '@/types';
 
 export const CONTENT_PATHS: Record<ContentType, string> = {
   article: 'Bibliography/Articles',
