@@ -1,5 +1,3 @@
-import fs from 'node:fs/promises';
-
 import { CONFIG } from '../config.ts';
 import { checkDestination } from '../utils/checkDestination.ts';
 
