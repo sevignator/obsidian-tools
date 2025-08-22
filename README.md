@@ -8,7 +8,7 @@ TODO
 
 ## Commands
 
-Each command must be run via the `pnpm cmd` custom script.
+Each command must be prefixed by `pnpm start`.
 
 - `check:vault`: Checks whether the Obsidian vault can be accessed.
 - `create:file`: Creates a single file.
