@@ -1,6 +1,7 @@
 import { checkVault } from '@/commands/checkVault';
 import { createFile } from '@/commands/createFile';
 import { createDirFile } from '@/commands/createDirFile';
+import { checkFileInVault } from '@/commands/checkFileInVault';
 
 interface Command {
   name: string;
@@ -9,6 +10,11 @@ interface Command {
 }
 
 export const commandsRegistry: Record<string, Command> = {
+  'check:fileInVault': {
+    name: 'check:fileInVault',
+    description: 'Checks whether a given file exists within a vault.',
+    callback: checkFileInVault,
+  },
   'check:vault': {
     name: 'check:vault',
     description: 'Checks whether the Obsidian vault can be accessed.',

@@ -6,6 +6,14 @@ This is a set of commands that allow me to more easily and conveniently manage m
 
 TODO
 
+## Commands
+
+Each command must be run via the `pnpm cmd` custom script.
+
+- `check:vault`: Checks whether the Obsidian vault can be accessed.
+- `create:file`: Creates a single file.
+- `create:dirfile`: Creates a directory file with its parent directory.
+
 ## Feature ideas
 
 - [ ] Add a "create folder file" command.
